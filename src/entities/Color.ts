@@ -1,5 +1,7 @@
 import { Column, Entity, PrimaryColumn, OneToMany } from "typeorm";
 import { InventoryPart } from "./InventoryPart";
+import { Element } from "./Element";
+
 
 @Entity({ name: "colors" })
 export class Color {
@@ -17,4 +19,7 @@ export class Color {
 
   @OneToMany(() => InventoryPart, (inventoryPart) => inventoryPart.color)
   inventoryParts: InventoryPart[];
+
+  @OneToMany(() => Element, (element) => element.color)
+  elements: Element[];
 }

@@ -1,26 +1,202 @@
+type Inventory {
+  """
+  The unique id of the inventory
+  """
+  id: Int!
+
+  """
+  The version of the inventory
+  """
+  version: Int!
+
+  """
+  The set number to which the inventory corresponds
+  """
+  setNum: String!
+
+  """
+  The inventory parts of this particular inventory
+  """
+  inventoryParts: [InventoryPart]!
+}
+
 type InventoryPart {
+  """
+  The id of the inventory to which the part belongs
+  """
   inventoryId: Int!
-  part: Part!
-  color: Color!
+
+  """
+  The specific id of the part in the inventory
+  """
+  partNum: String!
+
+  """
+  The color ID for the color of the part
+  """
+  colorId: Int!
+
+  """
+  How many of those parts are in the inventory
+  """
   quantity: Int!
+
+  """
+  True if this part is considered a spare part
+  """
   isSpare: Boolean!
+
+  """
+  Url for the image of the part. Can be null
+  """
   imgUrl: String
+
+  """
+  From the Part type, the part specified in the partNum string
+  """
+  part: Part!
+
+  """
+  From the color type, the color specified by the colorID.
+  """
+  color: Color!
+
 }
 
 type Color {
+  """
+  The color id
+  """
   id: ID!
+
+  """
+  The color name
+  """
   name: String!
+
+  """
+  The color rgb value
+  """
   rgb: String!
+
+  """
+  True if transparent
+  """
   isTransparent: Boolean!
+
+  """
+  The inventory parts associated with this color.
+  """  
   inventoryParts: [InventoryPart]!
+
+  """
+  The elements of this color
+  """
+  elements: [Element]!
+
 }
 
 type Part {
+  """
+  The part number/id
+  """
   partNum: String!
+
+  """
+  The part name
+  """
   name: String!
+
+  """
+  The id of the category to which the part belongs
+  """
   partCatId: Int!
+
+  """
+  Inventory parts corresponding to the specific part
+  """
   inventoryParts: [InventoryPart]!
+
+  """
+  Elements constituting the specific part
+  """
+  elements: [Element]!
+
+  """
+  Parts which parent is this specific part
+  """
+  childRelationships: [PartRelationship]!
+
+  """
+  Parts which are children of the current part
+  """
+  parentRelationships: [PartRelationship]!
 }
+
+
+
+type PartCategory {
+  """
+  Unique ID for the category
+  """
+  id: Int!
+
+  """
+  Name of the category
+  """
+  name: String!
+
+  """
+  Parts belonging to this category
+  """
+  parts: [Part]!
+}
+
+
+
+
+type Element {
+
+  """
+  Unique ID for the element
+  """
+  elementId: String!
+
+  """
+  part to which the element belong
+  """
+  part: Part!
+
+  """
+  the specific color of the element
+  """
+  color: Color!
+
+  """
+  Some design id for the element. Can be null.
+  """
+  designID: Int
+}
+
+type PartRelationship {
+
+  """
+  A letter describing the relationship type
+  """
+  relType: String!
+
+  """
+  The children part for this particular relationship
+  """
+  childPart: Part!
+
+  """
+  The parent part for this particular relationship
+  """
+  parentPart: Part!
+}
+
+
 
 type Query {
   """
@@ -44,8 +220,8 @@ type Query {
 
 
   """
-  fetch all inventory parts for a specific color and part number
-  # It may be hard to find corresponding color id and part numbers. So you can test with "partNum": "3742", "colorId": 13, for example
+  Fetch all inventory parts for a specific color and part number
+  # You can test with "partNum": "3742", "colorId": 13, for example
   """
   inventoryPartsByColorAndPart(colorId: Int!, partNum: String!): [InventoryPart]
 
