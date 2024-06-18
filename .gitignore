@@ -4,3 +4,6 @@ node_modules/
 build/
 tmp/
 temp/
+sourcefiles/
+database.db
+database_copy.db

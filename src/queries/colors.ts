@@ -9,3 +9,4 @@ export async function colors(
     await AppDataSource.manager.find(Color)
   );
 }
+

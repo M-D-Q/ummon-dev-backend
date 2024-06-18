@@ -1,20 +1,25 @@
+type InventoryPart {
+  inventoryId: Int!
+  part: Part!
+  color: Color!
+  quantity: Int!
+  isSpare: Boolean!
+  imgUrl: String
+}
+
 type Color {
-  """
-  The color id
-  """
   id: ID!
-  """
-  The color name
-  """
   name: String!
-  """
-  The color rgb value
-  """
   rgb: String!
-  """
-  True if transparent
-  """
   isTransparent: Boolean!
+  inventoryParts: [InventoryPart]!
+}
+
+type Part {
+  partNum: String!
+  name: String!
+  partCatId: Int!
+  inventoryParts: [InventoryPart]!
 }
 
 type Query {
@@ -22,4 +27,35 @@ type Query {
   The list of available colors
   """
   colors: [Color]
+  """
+  A specific color by ID
+  """
+  color(id: Int!): Color
+  
+  """
+  Get all parts
+  """
+  parts: [Part]
+
+  """
+  Get a specific part by ID (part_num)
+  """
+  part(partNum: String!): Part
+
+
+  """
+  fetch all inventory parts for a specific color and part number
+  # It may be hard to find corresponding color id and part numbers. So you can test with "partNum": "3742", "colorId": 13, for example
+  """
+  inventoryPartsByColorAndPart(colorId: Int!, partNum: String!): [InventoryPart]
+
+
 }
+
+type Mutation {
+  """
+  Modify a color name
+  """
+  updateColorName(id: Int!, name: String!): Color
+}
+
