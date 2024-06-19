@@ -9,9 +9,6 @@ import { createColor } from "./mutations/createColor";
 import { deleteColor } from "./mutations/deleteColor";
 import { ColorResolver } from "./resolvers/color";
 import { PartResolver } from "./resolvers/part";
-import { ElementResolver } from "./resolvers/element";
-import  { InventoryResolver } from "./resolvers/inventory";
-import { PartCategoryResolver } from "./resolvers/partCategory";
 
 
 
@@ -20,10 +17,6 @@ export const resolvers = {
   JSON: JSONResolver,
   Color: ColorResolver,
   Part: PartResolver,
-  Element: ElementResolver,
-  Inventory: InventoryResolver,
-  PartCategory: PartCategoryResolver,
-
 
   Query: {
     colors,
@@ -31,7 +24,6 @@ export const resolvers = {
     parts,
     part,
     inventoryPartsByColorAndPart, 
-    //totalQuantityByColor: ColorResolver.Query.totalQuantityByColor,
   },
   Mutation: {
     updateColorName,

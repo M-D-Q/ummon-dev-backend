@@ -13,7 +13,7 @@ export const AppDataSource = new DataSource({
   type: "sqlite",
   database: config.DATABASE_PATH,
   synchronize: true,
-  logging: true,
+  logging: false,
   entities: [
     Color,
     Part,

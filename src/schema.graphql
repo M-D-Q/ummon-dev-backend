@@ -1,3 +1,6 @@
+"""
+The Table containing all the inventories
+"""
 type Inventory {
   """
   The unique id of the inventory
@@ -20,6 +23,10 @@ type Inventory {
   inventoryParts: [InventoryPart]!
 }
 
+
+"""
+The Table containing all the parts per inventory
+"""
 type InventoryPart {
   """
   The unique id of that inventory part row
@@ -68,6 +75,10 @@ type InventoryPart {
 
 }
 
+
+"""
+The table containing the different colors along with their attributes
+"""
 type Color {
   """
   The color id
@@ -101,6 +112,10 @@ type Color {
 
 }
 
+
+"""
+The table containing the different lego parts
+"""
 type Part {
   """
   The part number/id
@@ -139,7 +154,9 @@ type Part {
 }
 
 
-
+"""
+The table containing the different categories that are used to classify lego parts
+"""
 type PartCategory {
   """
   Unique ID for the category
@@ -159,7 +176,9 @@ type PartCategory {
 
 
 
-
+"""
+The table containing the different elements constituting a given lego part
+"""
 type Element {
 
   """
@@ -183,6 +202,10 @@ type Element {
   designID: Int
 }
 
+
+"""
+The table containing all the relationship "links" between lego parts. As any part can have other parts as child parts.
+"""
 type PartRelationship {
 
   """
@@ -229,8 +252,6 @@ type Query {
   # You can test with "partNum": "3742", "colorId": 13, for example
   """
   inventoryPartsByColorAndPart(colorId: Int!, partNum: String!): [InventoryPart]
-
-  """
 
 }
 
