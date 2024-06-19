@@ -230,6 +230,7 @@ type Query {
   """
   inventoryPartsByColorAndPart(colorId: Int!, partNum: String!): [InventoryPart]
 
+  """
 
 }
 
