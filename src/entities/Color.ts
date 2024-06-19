@@ -1,11 +1,11 @@
-import { Column, Entity, PrimaryColumn, OneToMany } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { InventoryPart } from "./InventoryPart";
 import { Element } from "./Element";
 
 
 @Entity({ name: "colors" })
 export class Color {
-  @PrimaryColumn("integer", { name: "id" })
+  @PrimaryGeneratedColumn({ name: "id" })
   id: number;
 
   @Column({ name: "name", type: "varchar", length: 200 })
