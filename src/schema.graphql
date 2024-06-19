@@ -235,7 +235,7 @@ type Query {
   A specific color by ID
   """
   color(id: Int!): Color
-  
+
   """
   Get all parts
   """
