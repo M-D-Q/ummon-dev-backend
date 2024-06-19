@@ -22,6 +22,11 @@ type Inventory {
 
 type InventoryPart {
   """
+  The unique id of that inventory part row
+  """
+  id: Int!
+
+  """
   The id of the inventory to which the part belongs
   """
   inventoryId: Int!
@@ -230,8 +235,19 @@ type Query {
 
 type Mutation {
   """
-  Modify a color name
+  Modify a color name, choosing the color via the id and updating the name string as defined by the string argument
   """
   updateColorName(id: Int!, name: String!): Color
+
+  """
+  Create a color. Takes 3 arguments : name string, rgb string and isTransparent bool.
+  """
+  createColor(name: String!, rgb: String!, isTransparent: Boolean!): Color
+
+  """
+  Delete a color, by ID
+  """
+  deleteColor(id: Int!): Color
+
 }
 

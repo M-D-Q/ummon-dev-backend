@@ -1,22 +1,19 @@
 import { AppDataSource } from "../data-source";
 import { Color } from "../entities/Color";
 
-export async function updateColorName(
-  _parent: undefined, 
-  args: {
-    id: number, 
-    name: string 
-  }
+export async function deleteColor(
+    _parent: undefined, 
+    args: {id: number }
 ) {
   const color = await AppDataSource.manager.findOne(
-    Color, {
-      where: { id: args.id } 
+    Color, 
+    { where: 
+        { id: args.id }
     }
-  );
+    );
   if (!color) {
     throw new Error("Color not found");
   }
-  color.name = args.name;
-  await AppDataSource.manager.save(color);
+  await AppDataSource.manager.remove(color);
   return color;
 }
